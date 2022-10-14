@@ -20,8 +20,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install tox tox-gh-actions
+      - name: Check all types are present
+        run: |
+          pip install mypy
+          pip install types-requests
+          python -m mypy.stubtest github
       - name: Run tests
         run: tox
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2.1.0
-
